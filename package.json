@@ -1,0 +1,26 @@
+{
+  "name": "socialmedia-downloader",
+  "version": "1.0.0",
+  "description": "Social Media Downloader Project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Juand4rck12/socialMedia-downloader.git"
+  },
+  "author": "Juan Diego O",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Juand4rck12/socialMedia-downloader/issues"
+  },
+  "homepage": "https://github.com/Juand4rck12/socialMedia-downloader#readme",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "yt-dlp-exec": "^1.0.2"
+  }
+}
