@@ -1,12 +1,42 @@
 import axios from 'axios';
+import { PHONE_ID, VERSION, WHATSAPP_TOKEN } from '../config/config';
 
-const VERSION = "v22.0";
+/**
+ * Envía un mensaje de texto simple.
+ * @param {string} to Número destino (wa_id).
+ * @param {string} message Mensaje
+ */
+export async function sendText(to, message) {
+    try {
+        await axios.post(
+            `https://graph.facebook.com/${VERSION}/${PHONE_ID}/messages`,
+            {
+                messaging_product: "whatsapp",
+                to,
+                text: {
+                    body: message
+                },
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${WHATSAPP_TOKEN}`,
+                },
+            }
+        );
 
-export async function answerMessage({ version = VERSION, phone_number_id, from, msg_body }) {
+        console.log("✅Mensaje enviado correctamente!")
+
+    } catch (error) {
+        console.log(`Error al enviar el mensaje ${error}`);
+    }
+}
+
+// Responder mensaje (función de prueba)
+export async function answerMessage({ version = VERSION, from, msg_body }) {
     try {
         await axios({
             method: 'POST',
-            url: `https://graph.facebook.com/${version}/${phone_number_id}/messages`,
+            url: `https://graph.facebook.com/${version}/${PHONE_ID}/messages`,
             data: {
                 messaging_product: 'whatsapp',
                 to: from,
@@ -24,10 +54,14 @@ export async function answerMessage({ version = VERSION, phone_number_id, from, 
     }
 }
 
+/**
+ * Envía la plantilla de bienvenida con botones para escoger tipo de descarga
+ * @param {string} to 
+ */
 export async function sendTemplateMessage(to) {
     try {
         await axios.post(
-            `https://graph.facebook.com/${VERSION}/${phone_number_id}/messages`,
+            `https://graph.facebook.com/${VERSION}/${PHONE_ID}/messages`,
             {
                 messaging_product: "whatsapp",
                 to,
