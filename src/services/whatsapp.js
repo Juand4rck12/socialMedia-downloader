@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PHONE_ID, VERSION, WHATSAPP_TOKEN } from '../config/config';
+import { PHONE_ID, VERSION, WHATSAPP_TOKEN } from '../config/config.js';
 
 /**
  * Envía un mensaje de texto simple.
@@ -27,7 +27,7 @@ export async function sendText(to, message) {
         console.log("✅Mensaje enviado correctamente!")
 
     } catch (error) {
-        console.log(`Error al enviar el mensaje ${error}`);
+        console.log(`Error al enviar el mensaje ${error.message} || ${error.response?.data}`);
     }
 }
 
@@ -50,7 +50,7 @@ export async function answerMessage({ version = VERSION, from, msg_body }) {
 
         console.log('Respuesta enviada');
     } catch (error) {
-        console.log('Error al enviar la respuesta:', error.response?.data || error.message);
+        console.log(`Error al enviar la respuesta: || ${error.response?.data}`);
     }
 }
 
@@ -83,6 +83,6 @@ export async function sendTemplateMessage(to) {
         console.log("✅Template message enviado correctamente.")
 
     } catch (error) {
-        console.log(`Error al enviar el template message ${error}`);
+        console.log(`Error al enviar el template message ${error} || ${error.response?.data}`);
     }
 }
